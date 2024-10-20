@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #091235, #14202E);
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .header {
+            margin-bottom: 30px;
+        }
+        .title {
+            font-size: 40px;
+            font-weight: 700;
+            color: #88A9C3;
+            margin-bottom: 10px;
+        }
+        .container {
+            max-width: 600px;
+            background: #2B4257;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        .url-input {
+            font-size: 20px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #88A9C3;
+            border: none;
+            border-radius: 4px;
+            color: #091235;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #A4C8D4;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .result a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #2B4257;
+            color: #fff;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .result a:hover {
+            background-color: #1C2B3C;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="title">URL Shortener</div>
+    </div>
+    <div class="container">
+        <div class="url-input">Put the URL here:</div>
+        <form action="/shorten" method="POST">
+            <input type="text" name="url" placeholder="Enter your URL" required>
+            <button type="submit">Shorten</button>
+        </form>
+
+        {% if short_url %}
+        <div class="result">
+            <h2>Your shortened URL:</h2>
+            <a href="{{ short_url }}" target="_blank">{{ short_url }}</a>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
